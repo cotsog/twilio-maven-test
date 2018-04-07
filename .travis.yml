@@ -1,0 +1,18 @@
+matrix:
+  include:
+    - language: java
+      sudo: false
+      dist: trusty
+      env: SUDO=false DIST=trusty
+    - language: java
+      sudo: required
+      dist: trusty
+      env: SUDO=required DIST=trusty
+    - language: objective-c
+      osx_image: xcode9.2
+
+install:
+  - mkdir ~/.m2 || true
+  - cp settings.xml ~/.m2/
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script: true
